@@ -19,7 +19,9 @@ for k = 1 : length(fList)
     end
 end
 
-W = LDA(dataMat);
+% W = LDA(dataMat);
+W = load('W.mat');
+W=cell2mat(struct2cell(W));
 
 % Cross Validation
 % Dividing
@@ -36,7 +38,7 @@ for k = 1 : length(fList)
         for u = v : (v + tmp - 1)
             img_raw = imread([fpath, '/', imgList(ind(u)).name]);
             img_flatten = reshape(img_raw, 112 * 92, 1);
-            imgLDA = W' * img_flatten;
+            imgLDA = W' * double(img_flatten);
             ind_fold = (v + 1) / tmp;
             cvdataMat(count(ind_fold), :, ind_fold) = imgLDA';
             cvlabelMat(count(ind_fold), 1, ind_fold) = k;
