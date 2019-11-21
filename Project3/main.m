@@ -36,7 +36,7 @@ for k = 1 : length(fList)
             img_raw = imread([fpath, '/', imgList(ind(u)).name]);
             img_flatten = reshape(img_raw, 112 * 92, 1);
             ind_fold = (v + 1) / tmp;
-            cvdataMat(count(ind_fold), :, ind_fold) = img_flatten';
+            cvdataMat(count(ind_fold), :, ind_fold) = img_flatten' / 255;
             cvlabelMat(count(ind_fold), 1, ind_fold) = k;
             count(ind_fold) = count(ind_fold) + 1;
         end
