@@ -56,7 +56,7 @@ for i_fold = 1 : num_fold
             y_train = [y_train; cvlabelMat(:, :, t)];
         end
     end
-    accEachFold = KernelSVM(X_train, y_train, X_test, y_test, 40, 100);
+    accEachFold = LinearSVM(X_train, y_train, X_test, y_test, 40, 100);
     score(i_fold) = accEachFold;
 end
 
